@@ -146,13 +146,13 @@ exports.testCmd = (rl,id) => {
 							
 					if(quiz.answer.toLowerCase() === answer.trim().toLowerCase()){
 
-						log(`Su respuesta es: `);
-						biglog('Correcta','green');
+						log(`Su respuesta es correcta.`);
+						// biglog('Correcta','green');
 						rl.prompt();
 
 					} else{
-						log(`Su respuesta es: `);
-						biglog('Incorrecta','red');
+						log(`Su respuesta es incorrecta. `);
+						// biglog('Incorrecta','red');
 						rl.prompt();
 
 					};	

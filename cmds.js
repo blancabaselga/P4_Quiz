@@ -3,6 +3,8 @@ const readline = require('readline');
  const {log, biglog ,errorlog, colorize} = require("./out"); 
 
  const Sequelize = require('sequelize');
+
+ const net = require('net');
 /**
 * Muestra la ayuda
 */
@@ -253,7 +255,7 @@ exports.playCmd = (socket,rl) => {
 		return Promise.resolve()
 		.then (() => {
 			if (toBeResolved.length <= 0) {
-				console.log(socket,"No hay más preguntas. Usted gana");
+				log(socket,'fin');
 				return;
 			}
 
@@ -266,10 +268,10 @@ exports.playCmd = (socket,rl) => {
 			.then(a => {
 				if(a.toLowerCase().trim() === quiz.answer.toLowerCase().trim()) {
 					score++;
-					console.log(socket,"correcta");
+					log(socket,'correcta');
 					return playOne();
 				} else {
-					console.log(socket,"Incorrecta.Fin de la partida. Su puntuación es:");
+					log(socket,'Incorrecta. fin de la partida. Su puntuación es:');
 				}
 			})
 		})
@@ -283,10 +285,10 @@ exports.playCmd = (socket,rl) => {
 		return playOne();
 	})
 	.catch(e => {
-		console.log(socket,"error: " + e);
+		log(socket,"error: " + e);
 	})
 	.then(() => {
-		console.log(socket,score);
+		log(socket,score);
 		rl.prompt();
 	})
 };

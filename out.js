@@ -28,9 +28,9 @@
 	* @param color El color con el que pintar msg.
 	*/
 
-	const log = (msg,color) => {
+	const log = (socket , msg,color) => {
 
-		console.log(colorize(msg,color));
+		socket.write(colorize(msg,color) + '\n');
 	};
 
 	/**
@@ -40,9 +40,9 @@
 	* @param color El color con el que pintar msg.
 	*/
 
-	const biglog = (msg,color) => {
+	const biglog = (socket,msg,color) => {
 
-		log(figlet.textSync(msg,{horizontalLayout: 'full'}),color);
+		log(socket,figlet.textSync(msg,{horizontalLayout: 'full'}),color);
 	};
 
 	/**
@@ -51,9 +51,9 @@
 	* @param emsg Texto del mensaje de error.
 	*/
 
-	const errorlog = (emsg) => {
+	const errorlog = (socket,emsg) => {
 
-		log(`${colorize("error","red")} : ${colorize(colorize(emsg,"red"),"bgYellowBright")}`);
+		socket.write(`${colorize("error","red")} : ${colorize(colorize(emsg,"red"),"bgYellowBright")}\n`);
 	};
  
  	exports = module.exports = {
